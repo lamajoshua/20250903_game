@@ -1,0 +1,161 @@
+/* CSS Document */
+
+@keyframes fade-in-start-btn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+main {
+  
+  &:has(#p-top__start-status:checked) {
+    .c-logo {
+      width: 30%;
+      margin-left: -15%;
+      top: 5%;
+      transition: .8s ease;
+    }
+    
+    #p-top{
+      display: none;
+    }
+    
+    #p-stage{
+      display: flex;
+      opacity: 1;
+      transition: opacity .8s;
+    }
+  }
+  
+}
+
+#p-top {
+  &__start-btn {
+    opacity: 0;
+    box-shadow:  3px 3px 5px rgba(0,0,0,.3);
+    span {
+      text-shadow: 3px 3px 5px rgba(0,0,0,.3);
+    }
+    
+    animation: fade-in-start-btn 1s ease;
+    animation-delay: 1.5s;
+  }
+  
+  &__start-status {
+    display: none;
+  }
+  
+}
+
+@keyframes show-clear {
+  from {
+    transform: scale(1);
+    opacity: 0;
+  }
+  30%{
+    transform: scale(1);
+    opacity: 0;
+  }
+  60%{
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+#p-stage {
+  display: none;
+  opacity: 0;
+  background: #FFF9DF;
+  
+  &:not(:has(c-flying__status:checked)){
+    .c-flying:nth-child(1) {
+      display: block;
+      animation-play-state: running;
+    }
+  }
+  
+  //kill first fly
+  &:has(.c-flying:nth-child(1) .c-flying__status:checked){
+    .c-flying:nth-child(1) {
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .5s;
+      animation-play-state: paused;
+      
+    }
+    
+    .c-fly-list li:nth-child(1){
+      .c-kill {
+        opacity: 1;
+        transition: opacity .5s;
+      }
+    }
+    
+    //next 
+    
+    .c-flying:nth-child(2) {
+      display: block;
+      opacity: 1;
+      transition: opacity .5s;
+      animation-play-state: running;
+    }
+  }
+  
+  
+  //kill second fly
+  &:has(.c-flying:nth-child(2) .c-flying__status:checked){
+    .c-flying:nth-child(2) {
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .5s;
+      animation-play-state: paused;
+      
+    }
+    
+    .c-fly-list li:nth-child(2){
+      .c-kill {
+        opacity: 1;
+        transition: opacity .5s;
+      }
+    }
+    
+    //next 
+    
+    .c-flying:nth-child(3) {
+      display: block;
+      opacity: 1;
+      transition: opacity .5s;
+      animation-play-state: running;
+    }
+  }
+  
+  //kill last fly
+   &:has(.c-flying:nth-child(3) .c-flying__status:checked){
+    .c-flying:nth-child(3) {
+      pointer-events: none;
+      opacity: .5;
+      transition: opacity .5s;
+      animation-play-state: paused;
+      
+    }
+    
+    .c-fly-list li:nth-child(3){
+      .c-kill {
+        opacity: 1;
+        transition: opacity .5s;
+      }
+    }
+    
+    .c-stage__clear {
+      top: 40%;
+      animation: show-clear 1.2s ease-out;
+    }
+  }
+  
+}
